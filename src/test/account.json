@@ -1,0 +1,30 @@
+////SERV AGUA POTAB Y ALCANT DE LIMA-SEDAPAL | LUZ DEL SUR S.A.A. | accountPayments 
+{
+	"registryCode":"42122380",
+	"accountPayments":[
+	{
+		"id":"A0000000001",
+		"companyCode":"20100152356",
+		"devengeDate":"2018-08-28",
+		"concept":"Cuota Mensual",
+		"amount":50.23
+	},{
+		"id":"A0000000002",
+		"companyCode":"20331898008",
+		"devengeDate":"2018-08-28",
+		"concept":"Cuota Mensual",
+		"amount":193.2
+	},{
+		"id":"A0000000003",
+		"companyCode":"20100017491","
+		"devengeDate":"2018-08-25",
+		"concept":"Cuota Mensual",
+		"amount":250.50
+	},{
+		"id":"A0000000004",
+		"companyCode":"20100017491","
+		"devengeDate":"2018-08-25",
+		"concept":"Instalacion de Modems",
+		"amount":100
+	}]
+}

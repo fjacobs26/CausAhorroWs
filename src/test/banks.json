@@ -1,0 +1,22 @@
+//Datos de banco
+{
+	"id":"B0000000001",
+	"registryType":"DNI",
+	"registryCode":"72157179",
+	"registryName":"Jose Armando Jaramillo",
+	"accountNumber":"193-234",
+	"coinType":"Dolar",
+	"accountType":"Ahorros",
+	"actualBalance":3940,
+	"actualRetention":130
+}
+{
+	"id":"B0000000002",
+	"registryType":"DNI",
+	"registryCode":"42122380",
+	"registryName":"Diego Armando Solis",
+	"coinType":"Dolar",
+	"accountType":"Ahorros",
+	"actualBalance":3940,
+	"actualRetention":130
+}

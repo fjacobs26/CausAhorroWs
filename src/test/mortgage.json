@@ -1,0 +1,11 @@
+{
+	"id":"H0000000001",
+	"registryCode":"42122380",
+	"interestRate": 0.80,
+	"mortgageTimeState": 360,//se contabiliza por meses
+	"amount":500,
+	"entailment":["nomina","tarjeta","seguros/plan_pensiones"]
+}
+/*
+	*Hay un termino de comision por cancelacion pero eso se puede omitir ya que son tazas fijas
+*/
