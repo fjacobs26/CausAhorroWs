@@ -1,0 +1,10 @@
+spring:
+  redis:
+    cluster:
+      nodes: 
+    database:
+    host:
+    password:
+  kafka:
+    bootstrap-servers:
+    
