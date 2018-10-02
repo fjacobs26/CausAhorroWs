@@ -1,10 +1,17 @@
+server:
+  port: 8090
+  error:
+    whitelabel:
+      enabled: false
 spring:
-  redis:
-    cluster:
-      nodes: 
-    database:
-    host:
-    password:
-  kafka:
-    bootstrap-servers:
-    
+  datasource:
+    url: jdbc:mysql://localhost:3306/causahorrows
+    username: root
+    password: F3lip30s0ri0
+  jpa:
+    show-sql: false 
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
