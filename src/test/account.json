@@ -1,30 +1,48 @@
-////SERV AGUA POTAB Y ALCANT DE LIMA-SEDAPAL | LUZ DEL SUR S.A.A. | accountPayments 
 {
-	"registryCode":"42122380",
-	"accountPayments":[
-	{
-		"id":"A0000000001",
-		"companyCode":"20100152356",
-		"devengeDate":"2018-08-28",
-		"concept":"Cuota Mensual",
-		"amount":50.23
-	},{
-		"id":"A0000000002",
-		"companyCode":"20331898008",
-		"devengeDate":"2018-08-28",
-		"concept":"Cuota Mensual",
-		"amount":193.2
-	},{
-		"id":"A0000000003",
-		"companyCode":"20100017491","
-		"devengeDate":"2018-08-25",
-		"concept":"Cuota Mensual",
-		"amount":250.50
-	},{
-		"id":"A0000000004",
-		"companyCode":"20100017491","
-		"devengeDate":"2018-08-25",
-		"concept":"Instalacion de Modems",
-		"amount":100
-	}]
+	"data": {
+		"cardTransactions": [
+			{
+				"id": "210000000428737121150519155008182304",
+				"date": "2015-05-19T23:00:00.000Z",
+				"amount": -60.17,
+				"currency": "EUR",
+				"concept": "TRANSFERENCIA REALIZADA",
+				"isVirtualTpv": true,
+				"transactionType": "CONSOLIDATED",
+				"shop": {
+					"id": "000674507",
+					"name": "EL CORTE INGLÉS",
+					"address": "C/ Azul, 7",
+					"country": "Spain",
+					"category": {
+						"code": 110,
+						"name": "ES_HYPER"
+					},
+					"subcategory": {
+						"code": 6,
+						"name": "ES_HYPERMARKET"
+					},
+					"geolocation": {
+						"latitude": 40.422,
+						"longitude": -0.846055,
+						"quality": 10
+					}
+				},
+				"category": {
+					"code": 12,
+					"name": "OTHER EXPENSES"
+				},
+				"subcategory": {
+					"code": 62,
+					"name": "SENT TRANSFER"
+				},
+				"clientNotes": [
+					{
+						"text": "nota",
+						"date": "2015-03-26T10:53:26.000+0100"
+					}
+				]
+			}
+		]
+	}
 }
