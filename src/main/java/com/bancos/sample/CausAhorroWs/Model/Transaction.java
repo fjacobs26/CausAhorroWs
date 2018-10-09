@@ -3,63 +3,62 @@ package com.bancos.sample.CausAhorroWs.Model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
-import com.bancos.sample.CausAhorroWs.Model.enums.TransactionType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Table(name="transaction")
 @Entity
+@Table(name = "transaction")
 @SuppressWarnings("serial")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Transaction implements Serializable {
+	
 	@Id
-	@Size(max=100)
-	@Column(name="id_transaction")
-	private String idTransaction;
-	
-	@Column(name="date_transaction")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long idTransaction;
+
+	@Column(name = "date_transaction")
 	private Date dateTransaction;
-	
-	@Column(name="amount")
+
+	@Column(name = "amount")
 	private BigDecimal amount;
-	
-	@Column(name="currency")
-	private String currency;//MoneyValues
-	
-	@Column(name="concept")
+
+	@Column(name = "currency")
+	private String currency;// MoneyValues
+
+	@Column(name = "concept")
 	private String concept;
-	
-	@Column(name="isVirtualTpv")
+
+	@Column(name = "isVirtualTpv")
 	private boolean isVirtualTpv;
-	
-	@Column(name="transaction_type")
+
+	@Column(name = "transaction_type")
 	private String transactionType;
-		
+
 	@OneToOne(fetch = FetchType.LAZY)
 	private AccountGeneralServices accountServices;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	private Category category;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	private Category subCategory;
-	
-	@Column(name="note")
-	private String note;
 
-	public Transaction(String idTransaction, Date dateTransaction, BigDecimal amount, String currency, String concept,
-			boolean isVirtualTpv, String transactionType, AccountGeneralServices accountServices,
-			Category category, Category subCategory, String note) {
-		super();
-		this.idTransaction = idTransaction;
+	@Column(name = "note")
+	private String note;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	private Account account;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Client client;
+	
+	public Transaction(Date dateTransaction, BigDecimal amount, String currency, String concept,
+			boolean isVirtualTpv, String transactionType, AccountGeneralServices accountServices, 
+			String note, Account account, Client client) {
 		this.dateTransaction = dateTransaction;
 		this.amount = amount;
 		this.currency = currency;
@@ -67,17 +66,8 @@ public class Transaction implements Serializable {
 		this.isVirtualTpv = isVirtualTpv;
 		this.transactionType = transactionType;
 		this.accountServices = accountServices;
-		this.category = category;
-		this.subCategory = subCategory;
 		this.note = note;
-	}
-
-	public String getIdTransaction() {
-		return idTransaction;
-	}
-
-	public void setIdTransaction(String idTransaction) {
-		this.idTransaction = idTransaction;
+		this.account = account;
 	}
 
 	public Date getDateTransaction() {
@@ -135,23 +125,7 @@ public class Transaction implements Serializable {
 	public void setAccountServices(AccountGeneralServices accountServices) {
 		this.accountServices = accountServices;
 	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public Category getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(Category subCategory) {
-		this.subCategory = subCategory;
-	}
-
+	
 	public String getNote() {
 		return note;
 	}
@@ -160,4 +134,11 @@ public class Transaction implements Serializable {
 		this.note = note;
 	}
 
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 }

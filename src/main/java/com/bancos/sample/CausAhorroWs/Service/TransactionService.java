@@ -1,15 +1,13 @@
 package com.bancos.sample.CausAhorroWs.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 import com.bancos.sample.CausAhorroWs.Model.Transaction;
 
-@Service
-public class TransactionService {
+public interface TransactionService {
 	
-	public List<Transaction> listTransaction(){
-		return null;
-	}
+	public List<Transaction> findAll();
+	public boolean save(Transaction transaction);
+	public BigDecimal getRetention();
 }

@@ -8,12 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Table(name="category")
 @Entity
 @SuppressWarnings("serial")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Category implements Serializable{
-	@GeneratedValue
+	
 	@Id
+	@GeneratedValue
 	@Column(name="id")
 	private Long id;
 	
@@ -23,9 +27,7 @@ public class Category implements Serializable{
 	@Column(name="is_sub_category")
 	private boolean isSubCategory;
 	
-	public Category(Long id, String categoryName, boolean isSubCategory) {
-		super();
-		this.id = id;
+	public Category(String categoryName, boolean isSubCategory) {
 		this.categoryName = categoryName;
 		this.isSubCategory = isSubCategory;
 	}

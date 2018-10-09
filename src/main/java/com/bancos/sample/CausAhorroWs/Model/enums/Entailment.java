@@ -8,4 +8,13 @@ public enum Entailment {
 	Entailment(String entailment) {
 		this.entailment = entailment;
 	}
+
+	public String getEntailment() {
+		return entailment;
+	}
+
+	public void setEntailment(String entailment) {
+		this.entailment = entailment;
+	}
+	
 }

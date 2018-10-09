@@ -1,45 +1,87 @@
 package com.bancos.sample.CausAhorroWs.Model;
 
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-@Table(name="client")
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-public class Client {
-	@GeneratedValue
+@Table(name = "client")
+@SuppressWarnings("serial")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class Client implements Serializable {
 	@Id
-	@Column(name="id_client")
+	@GeneratedValue
+	@Column(name = "id")
 	private Long idClient;
-	
-	@Column(name="account")
-	private Account account;
-	
-	@Column(name="transaction")
-	private Transaction transaction;
-	
-	public Client(Long idClient, Account account, Transaction transaction) {
-		this.idClient = idClient;
-		this.account = account;
-		this.transaction = transaction;
+
+	@Email
+	@NotBlank
+	@Size(max = 50)
+	protected String username;
+
+	@NotBlank
+	@Size(max = 64)
+	protected String password;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private Address address;
+
+	@OneToMany(mappedBy = "client")
+	private Set<Transaction> transactions;
+
+	public Client() {
 	}
-	public Long getIdClient() {
-		return idClient;
+
+	public Client(String username, String password, Address address, Set<Transaction> transactions) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.address = address;
+		this.transactions = transactions;
 	}
-	public void setIdClient(Long idClient) {
-		this.idClient = idClient;
+
+	public String getUsername() {
+		return username;
 	}
-	public Account getAccount() {
-		return account;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public void setAccount(Account account) {
-		this.account = account;
+
+	public String getPassword() {
+		return password;
 	}
-	public Transaction getTransaction() {
-		return transaction;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public void setTransaction(Transaction transaction) {
-		this.transaction = transaction;
-	}	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Set<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(Set<Transaction> transactions) {
+		this.transactions = transactions;
+	}
 }

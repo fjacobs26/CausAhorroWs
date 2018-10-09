@@ -4,10 +4,18 @@ public enum TransactionType {
 	CONSOLIDATED		("Pago Consolidado"),
     PENDING				("Pago Pendiente");
     
-    String transactionType;
+    String detalle;
     
-    TransactionType(String transactionType){
-    	this.transactionType = transactionType;
+    TransactionType(String detalle){
+    	this.detalle = detalle;
     }
+
+	public String getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
+	}
 
 }
