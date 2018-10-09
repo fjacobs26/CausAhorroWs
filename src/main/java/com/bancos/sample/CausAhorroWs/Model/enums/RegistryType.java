@@ -1,16 +1,16 @@
 package com.bancos.sample.CausAhorroWs.Model.enums;
 
-public enum MoneyValues {
-	DOLAR		("Dolares"),
-	SOLES		("Soles");
+public enum RegistryType {
+	PNATURAL("Persona Natural"), PJURIDICA("Persona Juridica");
 	
-	private String detalle;
+	String detalle;
 	
-	MoneyValues(String detalle){
+	RegistryType(String detalle){
 		this.detalle = detalle;
 	}
 
 	public String getDetalle() {
 		return detalle;
 	}
+	
 }

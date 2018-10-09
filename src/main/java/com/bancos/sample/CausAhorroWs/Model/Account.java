@@ -5,20 +5,25 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
-@Table(name = "account")
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@Table(name = "account")
 @SuppressWarnings("serial")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Account implements Serializable {
-	@GeneratedValue
-	@Id
-	@Size(max=100)
-	@Column(name = "id_account")
-	private String idAccount;
+	
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long idAccount;
 
 	@Column(name = "registry_type")
 	private String registryType;
@@ -29,7 +34,7 @@ public class Account implements Serializable {
 	@Column(name = "account_number")
 	private String accountNumber;
 
-	@Column(name = "coinType")
+	@Column(name = "coin_type")
 	private String coinType;
 
 	@Column(name = "account_type")
@@ -40,11 +45,16 @@ public class Account implements Serializable {
 
 	@Column(name = "retention")
 	private BigDecimal actualRetention;
+	
+	@JoinColumn(name="id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Client client;
+	
+	public Account() {}
 
-	public Account(String idAccount, String registryType, String registryCode, String accountNumber, String coinType,
-			String accountType, BigDecimal actualBalance, BigDecimal actualRetention) {
+	public Account(String registryType, String registryCode, String accountNumber, String coinType, String accountType,
+			BigDecimal actualBalance, BigDecimal actualRetention, Client client) {
 		super();
-		this.idAccount = idAccount;
 		this.registryType = registryType;
 		this.registryCode = registryCode;
 		this.accountNumber = accountNumber;
@@ -52,14 +62,7 @@ public class Account implements Serializable {
 		this.accountType = accountType;
 		this.actualBalance = actualBalance;
 		this.actualRetention = actualRetention;
-	}
-
-	public String getIdAccount() {
-		return idAccount;
-	}
-
-	public void setIdAccount(String idAccount) {
-		this.idAccount= idAccount;
+		this.client = client;
 	}
 
 	public String getRegistryType() {
@@ -118,4 +121,12 @@ public class Account implements Serializable {
 		this.actualRetention = actualRetention;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
 }

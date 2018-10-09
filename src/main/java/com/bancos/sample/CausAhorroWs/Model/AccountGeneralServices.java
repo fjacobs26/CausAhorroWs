@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name = "transaction")
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@Table(name = "services")
 @SuppressWarnings("serial")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class AccountGeneralServices implements Serializable {
 	@Id
 	@GeneratedValue
@@ -23,11 +25,8 @@ public class AccountGeneralServices implements Serializable {
 	@Column(name = "companyCode")
 	private String companyCode;
 	
-	@Column(name = "address")
-	private String address;
-	
-	@Column(name = "country")
-	private String country;
+	@OneToOne(fetch = FetchType.LAZY)
+	private Address address;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	private Category category;
@@ -35,13 +34,12 @@ public class AccountGeneralServices implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	private Category subCategory;
 
-	public AccountGeneralServices(Long id, String companyCode, String address, String country, Category category,
+	public AccountGeneralServices(){}
+	
+	public AccountGeneralServices(String companyCode, Address address, Category category,
 			Category subCategory) {
-		super();
-		this.id = id;
 		this.companyCode = companyCode;
 		this.address = address;
-		this.country = country;
 		this.category = category;
 		this.subCategory = subCategory;
 	}
@@ -62,20 +60,12 @@ public class AccountGeneralServices implements Serializable {
 		this.companyCode = companyCode;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 	public Category getCategory() {
@@ -93,5 +83,4 @@ public class AccountGeneralServices implements Serializable {
 	public void setSubCategory(Category subCategory) {
 		this.subCategory = subCategory;
 	}
-
 }
