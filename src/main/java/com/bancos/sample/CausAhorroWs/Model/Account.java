@@ -47,14 +47,13 @@ public class Account implements Serializable {
 	private BigDecimal actualRetention;
 	
 	@JoinColumn(name="id")
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Client client;
 	
 	public Account() {}
 
 	public Account(String registryType, String registryCode, String accountNumber, String coinType, String accountType,
 			BigDecimal actualBalance, BigDecimal actualRetention, Client client) {
-		super();
 		this.registryType = registryType;
 		this.registryCode = registryCode;
 		this.accountNumber = accountNumber;

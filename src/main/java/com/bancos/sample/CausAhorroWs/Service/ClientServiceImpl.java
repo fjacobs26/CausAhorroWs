@@ -33,4 +33,9 @@ public class ClientServiceImpl implements ClientService{
 		
 	}
 
+	@Override
+	public Client findById(String username) {
+		return clientRepository.findByUsername(username);
+	}
+
 }

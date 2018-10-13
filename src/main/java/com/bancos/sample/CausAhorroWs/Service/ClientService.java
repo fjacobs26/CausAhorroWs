@@ -5,5 +5,6 @@ import java.util.List;
 public interface ClientService {
 	public List<Client> findAll();
 	public boolean save(Client client);
+	public Client findById(String username);
 	
 }

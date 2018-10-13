@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @SuppressWarnings("serial")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Category implements Serializable{
-	
 	@Id
 	@GeneratedValue
 	@Column(name="id")
@@ -26,6 +25,8 @@ public class Category implements Serializable{
 	
 	@Column(name="is_sub_category")
 	private boolean isSubCategory;
+	
+	public Category() {}
 	
 	public Category(String categoryName, boolean isSubCategory) {
 		this.categoryName = categoryName;
@@ -46,10 +47,6 @@ public class Category implements Serializable{
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
-	}
-
-	public boolean isSubCategory() {
-		return isSubCategory;
 	}
 
 	public void setSubCategory(boolean isSubCategory) {

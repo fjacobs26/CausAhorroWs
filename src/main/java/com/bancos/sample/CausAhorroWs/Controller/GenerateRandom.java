@@ -51,21 +51,21 @@ public class GenerateRandom {
 	@Qualifier("accountGeneralServicesSerivceImpl")
 	private AccountGeneralServicesService accountGeneralServicesSerivce;
 
-//	@Scheduled(fixedRate = 5000)
-//	public void accountRandom() {
-//		Account account = new Account(
-//				"" + RegistryType.values()[new Random().nextInt(RegistryType.values().length)].getDetalle(),
-//				"" + Commons.getAccounts().get(0),
-//				"4" + BankIdentifier.values()[new Random().nextInt(BankIdentifier.values().length)].getDetalle()
-//						+ Commons.getAccounts().get(1),
-//				"" + MoneyValues.values()[new Random().nextInt(MoneyValues.values().length)].getDetalle(),
-//				"" + AccountType.values()[new Random().nextInt(AccountType.values().length)].getDetalle(),
-//				new BigDecimal("" + Commons.getAccounts().get(2)), new BigDecimal("" + Commons.getAccounts().get(3)),
-//				null);//
-//		accountService.save(account);
-//	}
-
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(fixedRate = 2000)
+	public void accountRandom() {
+		Account account = new Account(
+				"" + RegistryType.values()[new Random().nextInt(RegistryType.values().length)].getDetalle(),
+				"" + Commons.getAccounts().get(0),
+				"4" + BankIdentifier.values()[new Random().nextInt(BankIdentifier.values().length)].getDetalle()
+						+ Commons.getAccounts().get(1),
+				"" + MoneyValues.values()[new Random().nextInt(MoneyValues.values().length)].getDetalle(),
+				"" + AccountType.values()[new Random().nextInt(AccountType.values().length)].getDetalle(),
+				new BigDecimal("" + Commons.getAccounts().get(2)), new BigDecimal("" + Commons.getAccounts().get(3)),
+				Commons.getRandomClient(clientService.findAll()));//
+		accountService.save(account);
+		System.out.println(account.getClient().getUsername());
+	}
+	@Scheduled(cron = "59 * * * * *")
 	public void TransactionRandom() {
 		List<Account> listAllAccounts = accountService.findAll();
 		for (Account account : listAllAccounts) {
@@ -77,10 +77,9 @@ public class GenerateRandom {
 					TransactionType.values()[new Random().nextInt(TransactionType.values().length)].getDetalle(),
 					Commons.getRandomGeneralService(accountGeneralServicesSerivce.findAll()),
 					"",
-					Commons.getRandomAccount(accountService.findAll()),
-					Commons.getRandomClient(clientService.findAll()));
-			System.out.println(transaction.getTransactionType());
-			System.out.println(transaction.getDateTransaction());
+					account,
+					account.getClient());
+			transactionService.save(transaction);
 		}
 		
 	}
