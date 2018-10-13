@@ -44,17 +44,19 @@ public class Transaction implements Serializable {
 	@Column(name = "transaction_type")
 	private String transactionType;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private AccountGeneralServices accountServices;
 
 	@Column(name = "note")
 	private String note;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Account account;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Client client;
+	
+	public Transaction() {}
 	
 	public Transaction(Date dateTransaction, BigDecimal amount, String currency, String concept,
 			boolean isVirtualTpv, String transactionType, AccountGeneralServices accountServices, 
@@ -70,6 +72,10 @@ public class Transaction implements Serializable {
 		this.account = account;
 	}
 
+	public Long getIdTransaction() {
+		return idTransaction;
+	}
+	
 	public Date getDateTransaction() {
 		return dateTransaction;
 	}

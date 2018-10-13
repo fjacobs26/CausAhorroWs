@@ -25,13 +25,13 @@ public class AccountGeneralServices implements Serializable {
 	@Column(name = "companyCode")
 	private String companyCode;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Address address;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Category category;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Category subCategory;
 
 	public AccountGeneralServices(){}
