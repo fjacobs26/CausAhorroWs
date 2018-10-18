@@ -52,15 +52,12 @@ public class Transaction implements Serializable {
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	private Account account;
-
-	@ManyToOne(fetch=FetchType.EAGER)
-	private Client client;
 	
 	public Transaction() {}
 	
 	public Transaction(Date dateTransaction, BigDecimal amount, String currency, String concept,
 			boolean isVirtualTpv, String transactionType, AccountGeneralServices accountServices, 
-			String note, Account account, Client client) {
+			String note, Account account) {
 		this.dateTransaction = dateTransaction;
 		this.amount = amount;
 		this.currency = currency;

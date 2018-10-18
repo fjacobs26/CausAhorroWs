@@ -73,26 +73,20 @@ public class Commons {
 		return resulRetention;
 	}
 
-	public static BigDecimal getAmountTransaction(BigDecimal retention) {
-		int randomIndex = 5;
-		double acum = 0;
+	public static BigDecimal getAmountTransaction(BigDecimal retention, BigDecimal aux) {
+		double acum = Double.parseDouble(aux.toString());
 		BigDecimal getAcum = new BigDecimal("0.00");
 		double totalAmount = Double.parseDouble(retention.toString());
-		for (int i = 0; i < randomIndex;) {
-			double randomValues = (Math.random() * ((650 - 1) + 1)) + 1;
-			acum += randomValues;
-			if (acum <= totalAmount) {
-				getAcum = new BigDecimal(randomValues);
-				return getAcum;
-			} else {
-				double newValue = acum - totalAmount;
-				double newValue_ = randomValues - newValue;
-				acum -= randomValues;
-				acum += newValue_;
-				getAcum = new BigDecimal(newValue_);
-				return getAcum;
-			}
+		double randomValues = (Math.random() * ((450 - 1) + 1)) + 1;
+		
+		if (randomValues <= totalAmount) {
+			getAcum = new BigDecimal(randomValues);
+			return getAcum;
+		} else {
+			double newValue = acum + randomValues;
+			double newValue_ = newValue-totalAmount;
+			getAcum = new BigDecimal(randomValues - newValue_);
+			return getAcum;
 		}
-		return getAcum;
 	}
 }

@@ -1,4 +1,7 @@
-//package com.bancos.sample.CausAhorroWs;
+package com.bancos.sample.CausAhorroWs;
+
+import java.math.BigDecimal;
+
 //import java.io.BufferedReader;
 //import java.io.InputStreamReader;
 //import java.util.ArrayList;
@@ -12,7 +15,7 @@
 //import org.apache.http.impl.client.HttpClientBuilder;
 //import org.apache.http.impl.client.HttpClients;
 //import org.apache.http.message.BasicNameValuePair;
-//public class BbvaTest {
+public class BbvaTest {
 //		public static void main(String[] args) throws Exception { 		
 //			//API end point to make a call
 //			String endpoint = "https://apis.bbva.com/cards-sbx/v2";
@@ -40,3 +43,14 @@
 //	}
 //
 //}
+
+
+	public static void main(String[] args) {
+		BigDecimal aux = new BigDecimal(0.00);
+		BigDecimal aux2 = new BigDecimal(5.437435345535345435345400);
+		aux = aux.add(aux2);
+		System.out.println(aux);
+		aux2 = aux2.setScale(2, BigDecimal.ROUND_HALF_UP);
+		System.out.println(aux2);
+	}
+}
